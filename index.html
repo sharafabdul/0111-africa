@@ -1,36 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- SEO Meta Tags -->
-    <title>0111 Africa | Rural Talent Discovery & Digital Connectivity</title>
-    <meta name="description" content="Empowering Africa's next generation through AI-powered talent platforms, offline-first connectivity, and community-focused digital solutions. Discover hidden talent in rural Africa." />
-    <meta name="keywords" content="Africa, talent discovery, AI, offline-first, rural connectivity, football scouting, youth development, digital inclusion, 0111 Africa" />
-    <meta name="author" content="0111 Limited" />
-    
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://0111.africa/" />
-    <meta property="og:title" content="0111 Africa | Rural Talent Discovery & Digital Connectivity" />
-    <meta property="og:description" content="Empowering Africa's next generation through AI-powered talent platforms, offline-first connectivity, and community-focused digital solutions." />
-    <meta property="og:image" content="/og-image.png" />
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="0111 Africa | Rural Talent Discovery & Digital Connectivity" />
-    <meta name="twitter:description" content="Empowering Africa's next generation through AI-powered talent platforms, offline-first connectivity, and community-focused digital solutions." />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://0111.africa/" />
-    
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#e85c1d" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0111 Africa – Rural Talent & Digital Connectivity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            color: #e0e0e0;
+            text-align: center;
+            background: linear-gradient(to bottom, #0f172a, #1e293b);
+            min-height: 100vh;
+            position: relative;
+            overflow-y: auto;
+        }
+        canvas {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.15;
+        }
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: clamp(60px, 12vw, 120px) 20px 60px;
+        }
+        .hero-logo {
+            font-family: Inter, system-ui, -apple-system, sans-serif;
+            font-weight: 600;
+            font-size: clamp(5rem, 14vw, 8rem);
+            letter-spacing: -0.05em;
+            line-height: 1;
+            margin: 0 0 1rem;
+        }
+        .hero-logo span { display: inline-block; }
+        .hero-logo .g { color: #7BC043; }
+        .hero-logo .y { color: #F4E409; }
+        .hero-logo .r { color: #D7261E; }
+        .hero-logo .p { color: #5A2DFF; }
+        .hero-logo .ab {
+            color: #e0e0e0;
+            font-weight: 500;
+            font-size: 0.4em;
+            vertical-align: middle;
+            margin-left: 0.3em;
+        }
+        .sub {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            color: #94a3b8;
+            margin: 1rem 0 2rem;
+        }
+        h2 {
+            font-size: clamp(2.5rem, 7vw, 4rem);
+            color: #d4af37;
+            margin: 3rem 0 1.5rem;
+        }
+        p {
+            font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .card {
+            background: rgba(255,255,255,0.05);
+            padding: 1.8rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.4s ease;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            background: rgba(255,255,255,0.08);
+            box-shadow: 0 10px 30px rgba(212,175,55,0.15);
+        }
+        .card h4 {
+            color: #d4af37;
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .btn {
+            background: #d4af37;
+            color: #0f172a;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            text-decoration: none;
+            box-shadow: 0 0 40px rgba(212,175,55,0.5);
+            transition: all 0.4s ease;
+            display: inline-block;
+            margin: 3rem 0;
+        }
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 60px rgba(212,175,55,0.7);
+        }
+        footer {
+            padding: 3rem 0 2rem;
+            font-size: 0.9rem;
+            color: #94a3b8;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        @media (max-width: 768px) {
+            .container { padding: 0 1rem; }
+            .cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <div class="container">
+        <div class="hero">
+            <div class="hero-logo">
+                <span class="g">0</span><span class="y">1</span><span class="r">1</span><span class="p">1</span><span class="ab"> AB</span>
+            </div>
+            <p class="sub">Africa Division</p>
+            <h2>Rural Talent Discovery & Digital Connectivity</h2>
+            <p>0111 Limited is driving digital inclusion and youth empowerment across rural Africa through AI-powered talent platforms, offline-first connectivity, and community-focused solutions.</p>
+            <a href="mailto:service@0111.se" class="btn">Get Involved</a>
+        </div>
+
+        <section class="services">
+            <h2>Our Core Programs</h2>
+            <div class="cards">
+                <div class="card">
+                    <h4>90-Second Scout™</h4>
+                    <p>AI-ranked 90-second football clips from rural areas — connecting talent to global scouts and academies.</p>
+                </div>
+                <div class="card">
+                    <h4>RuralStarTalent™</h4>
+                    <p>Offline talent tool for underserved communities — Starlink + edge AI for real-world discovery.</p>
+                </div>
+                <div class="card">
+                    <h4>InstantVillage™</h4>
+                    <p>Offline content creation & sync — digital access without constant internet.</p>
+                </div>
+                <div class="card">
+                    <h4>PidginCore™</h4>
+                    <p>Indigenous language AI — Pidgin, Hausa, Yoruba, Igbo for education, government, and support.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            © 2026 0111 Limited – RC 9000751 – Nigeria  
+            Building Digital Opportunity in Rural Africa
+        </footer>
+    </div>
+
+    <!-- Subtle gold particle background -->
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        const numParticles = 80;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * 0.4 - 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = '#d4af37';
+                ctx.globalAlpha = 0.4;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
 </html>
